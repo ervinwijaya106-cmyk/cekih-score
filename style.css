@@ -508,11 +508,11 @@ html, body {
   position: relative;
   width: var(--card-w);
   height: var(--card-h);
-  background-image: var(--animal-img);
+  background-image: none;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  background-color: #000;
+  background-color: transparent;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
@@ -526,7 +526,7 @@ html, body {
 .player-card::before {
   content: '';
   position: absolute; inset: 0;
-  background: rgba(0,0,0,0.50);
+  background: transparent;
   border-radius: 10px;
   z-index: 0;
   pointer-events: none;
