@@ -547,7 +547,6 @@ function createPlayerCards() {
     // INNER CARD
     const card = document.createElement('div');
     card.className = `player-card elem-${elemName}`;
-    card.style.setProperty('--animal-img', `url('${ANIMAL_IMGS[p.setupIdx]}')`);
     card.id = `card-${p.setupIdx}`;
     card.dataset.setupIdx = p.setupIdx;
 
