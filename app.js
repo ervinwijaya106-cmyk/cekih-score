@@ -493,11 +493,17 @@ async function runAudioSequence(burnActions) {
   await speak(comment);
 
   // Check consecutive minus
-  for (let p of gameState.players) {
+  let playMinusOnce = false;
+
+for (let p of gameState.players) {
     if (p._playMinus3) {
-      p._playMinus3 = false;
-      await playWav('audio/kok_minus_terus_sih_gamau_menang.wav');
-    }  
+        p._playMinus3 = false;
+        playMinusOnce = true;
+    }
+}
+
+if (playMinusOnce) {
+    await playWav('audio/kok_minus_terus_sih_gamau_menang.wav');
 }
 
 // ============================================================
