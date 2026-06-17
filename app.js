@@ -247,7 +247,7 @@ function processBurn(selectedVictimIndices) {
       });
 
       // Check if victim was burned multiple times → audio
-      if (victim.burned >= 3) {
+      if (victim.burned >= 1) {
         victim._playMulaiDari0 = true;
       }
     }
