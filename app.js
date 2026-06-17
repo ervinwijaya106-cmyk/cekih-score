@@ -204,7 +204,7 @@ function updateRecoveryStatus(players, currentTurn) {
   for (let p of players) {
     if (p.isInRecoveryMode) {
       // Recovery lasts 1 full turn after the turn they were burned
-      if (currentTurn > p.recoveryStartTurn + 1) {
+      if (currentTurn >= p.recoveryStartTurn + 1) {
         p.isInRecoveryMode = false;
         p.recoveryStartTurn = null;
       }
