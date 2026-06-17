@@ -3,33 +3,38 @@
    ============================================================ */
 'use strict';
 
-const CACHE_NAME = 'score-cekih-v7';
+const CACHE_NAME = 'score-cekih-v8';
+
+const BASE = '/cekih-score';
 
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/app.js',
-  '/manifest.json',
-  '/images/background.png',
-  '/images/joker.png',
-  '/images/joker.ico',
-  '/images/border_1.png',
-  '/images/border_2.png',
-  '/images/border_3.png',
-  '/images/border_4.png',
-  '/images/animal_1.png',
-  '/images/animal_2.png',
-  '/images/animal_3.png',
-  '/images/animal_4.png',
-  '/audio/casino_bg.mp3',
-  '/audio/mulai_dari_0_ya_bapak.wav',
-  '/audio/kok_minus_terus_sih_gamau_menang.wav',
-  '/audio/klik.wav',
-  '/video/dragon.mp4',
-  '/video/tiger.mp4',
-  '/video/eagle.mp4',
-  '/video/cobra.mp4'
+  BASE + '/',
+  BASE + '/index.html',
+  BASE + '/style.css',
+  BASE + '/app.js',
+  BASE + '/manifest.json',
+
+  BASE + '/images/background.png',
+  BASE + '/images/joker.png',
+  BASE + '/images/joker.ico',
+  BASE + '/images/border_1.png',
+  BASE + '/images/border_2.png',
+  BASE + '/images/border_3.png',
+  BASE + '/images/border_4.png',
+  BASE + '/images/animal_1.png',
+  BASE + '/images/animal_2.png',
+  BASE + '/images/animal_3.png',
+  BASE + '/images/animal_4.png',
+
+  BASE + '/audio/casino_bg.mp3',
+  BASE + '/audio/mulai_dari_0_ya_bapak.wav',
+  BASE + '/audio/kok_minus_terus_sih_gamau_menang.wav',
+  BASE + '/audio/klik.wav',
+
+  BASE + '/video/dragon.mp4',
+  BASE + '/video/tiger.mp4',
+  BASE + '/video/eagle.mp4',
+  BASE + '/video/cobra.mp4'
 ];
 
 // INSTALL — cache all assets
