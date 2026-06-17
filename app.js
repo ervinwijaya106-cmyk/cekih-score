@@ -185,7 +185,7 @@ function detectBurnCandidates(playersBefore, playersAfter, rankBefore, rankAfter
       if (playersAfter[victimIdx].score <= 0) continue;
 
       // Victim must not be in Recovery Mode
-      if (playersAfter[victimIdx].isInRecoveryMode) continue;
+     //if (playersAfter[victimIdx].isInRecoveryMode) continue;
 
       // Recovery-exited players cannot burn each other this turn
       if (justExitedRecovery.has(attackerIdx) && justExitedRecovery.has(victimIdx)) continue;
