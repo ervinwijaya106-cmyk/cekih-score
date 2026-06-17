@@ -226,6 +226,7 @@ function processBurn(selectedVictimIndices) {
   }
 
   const burnActions = [];
+  let playMulaiDari0 = false;
   for (let [attackerIdxStr, victims] of Object.entries(attackerGroups)) {
     const attackerIdx = parseInt(attackerIdxStr);
     for (let victimIdx of victims) {
@@ -235,6 +236,7 @@ function processBurn(selectedVictimIndices) {
       victim.isInRecoveryMode = true;
       victim.recoveryStartTurn = gameState.turn;
       victim.burned = (victim.burned || 0) + 1;
+       playMulaiDari0 = true;
       attacker.burns = (attacker.burns || 0) + 1;
       burnActions.push({ attackerIdx, victimIdx, attackerName: attacker.name, victimName: victim.name });
 
@@ -259,6 +261,7 @@ function processBurn(selectedVictimIndices) {
   }
 
   // Update ranking after burns
+  gameState._playMulaiDari0 = playMulaiDari0;
   gameState.ranking = calculateRanking(gameState.players);
   updateArchive();
   checkAchievements();
@@ -475,18 +478,10 @@ async function runAudioSequence(burnActions) {
   const shufflerName = gameState.players[shIdx] ? gameState.players[shIdx].name : '';
   if (shufflerName) await speak(`${shufflerName} tolong kocok kartunya ya`);
 
-   let playMulaiDari0Once = false;
-
-for (let p of gameState.players) {
-    if (p._playMulaiDari0) {
-        p._playMulaiDari0 = false;
-        playMulaiDari0Once = true;
-    }
-}
-
-if (playMulaiDari0Once) {
+   if (gameState._playMulaiDari0) {
+    gameState._playMulaiDari0 = false;
     await playWav('audio/mulai_dari_0_ya_bapak.wav');
-    }
+   }
    
   // Total score
   for (let p of gameState.players) {
