@@ -475,12 +475,19 @@ async function runAudioSequence(burnActions) {
   const shufflerName = gameState.players[shIdx] ? gameState.players[shIdx].name : '';
   if (shufflerName) await speak(`${shufflerName} tolong kocok kartunya ya`);
 
-   for (let p of gameState.players) {
+   let playMulaiDari0Once = false;
+
+for (let p of gameState.players) {
     if (p._playMulaiDari0) {
         p._playMulaiDari0 = false;
-        await playWav('audio/mulai_dari_0_ya_bapak.wav');
+        playMulaiDari0Once = true;
     }
 }
+
+if (playMulaiDari0Once) {
+    await playWav('audio/mulai_dari_0_ya_bapak.wav');
+    }
+   
   // Total score
   for (let p of gameState.players) {
     await speak(`${p.name} mendapatkan ${numberToIndonesia(p.score)} poin`);
