@@ -680,18 +680,20 @@ html, body {
   margin-top: auto;
 }
 .card-score-input {
-  flex: 1;
-  height: 30px;
-  background: rgba(0,0,0,0.45);
-  border: 1px solid rgba(255,215,0,0.3);
-  border-radius: 6px;
-  color: var(--text-main);
-  font-size: 0.78rem;
-  text-align: center;
-  outline: none;
-  padding: 0 4px;
-  transition: border-color 0.2s;
-  min-width: 0;
+  .card-score-input {
+    flex: 1;
+    height: 30px;
+    background: rgba(0,0,0,0.8);
+    border: 2px solid rgba(255,215,0,0.8);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-align: center;
+    outline: none;
+    padding: 0 4px;
+    transition: border-color 0.2s;
+    min-width: 0;
 }
 .card-score-input:focus { border-color: var(--gold); background: rgba(0,0,0,0.62); }
 .card-score-input::placeholder { color: rgba(240,234,210,0.35); font-size: 0.68rem; }
