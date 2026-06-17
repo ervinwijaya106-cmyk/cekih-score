@@ -480,7 +480,7 @@ async function runAudioSequence(burnActions) {
         p._playMulaiDari0 = false;
         await playWav('audio/mulai_dari_0_ya_bapak.wav');
     }
-}}
+}
   // Total score
   for (let p of gameState.players) {
     await speak(`${p.name} mendapatkan ${numberToIndonesia(p.score)} poin`);
@@ -504,8 +504,8 @@ for (let p of gameState.players) {
 
 if (playMinusOnce) {
     await playWav('audio/kok_minus_terus_sih_gamau_menang.wav');
+   }
 }
-
 // ============================================================
 // BACKGROUND MUSIC
 // ============================================================
