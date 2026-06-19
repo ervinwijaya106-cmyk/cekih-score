@@ -511,11 +511,30 @@ if (playMinusOnce) {
 // ============================================================
 // BACKGROUND MUSIC
 // ============================================================
+const bgPlaylist = [
+  'audio/casino_bg.mp3',
+  'audio/casino_bg2.mp3',
+  'audio/casino_bg3.mp3',
+  'audio/casino_bg4.mp3'
+];
+
+let currentMusic = 0;
+
 function initBgMusic() {
   try {
-    bgMusic = new Audio('audio/casino_bg.mp3');
-    bgMusic.loop = true;
+    bgMusic = new Audio(bgPlaylist[currentMusic]);
+bgMusic.loop = false;
     bgMusic.volume = bgMusicOn ? bgMusicVolume : 0;
+     bgMusic.addEventListener('ended', () => {
+    currentMusic++;
+
+    if (currentMusic >= bgPlaylist.length) {
+        currentMusic = 0;
+    }
+
+    bgMusic.src = bgPlaylist[currentMusic];
+    bgMusic.play().catch(() => {});
+});
     if (bgMusicOn) bgMusic.play().catch(()=>{});
   } catch(e) {}
 }
@@ -524,11 +543,11 @@ function toggleMusic() {
   bgMusicOn = !bgMusicOn;
   if (bgMusic) {
     if (bgMusicOn) {
-      bgMusic.volume = bgMusicVolume;
-      bgMusic.play().catch(()=>{});
-    } else {
-      bgMusic.volume = 0;
-      bgMusic.pause();
+    bgMusic.volume = bgMusicVolume;
+    bgMusic.play().catch(() => {});
+} else {
+    bgMusic.pause();
+    }
     }
   }
   document.getElementById('btn-toggle-music').textContent = bgMusicOn ? '🎵' : '🔇';
