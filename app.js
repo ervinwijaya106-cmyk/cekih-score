@@ -509,14 +509,14 @@ async function runAudioSequence(burnActions) {
   // If there are burns
   if (burnActions && burnActions.length > 0) {
     for (let ba of burnActions) {
-      await speak(`${ba.attackerName} membakar ${ba.victimName}`);
+      await speak(`${ba.attackerName} ngaduruk ${ba.victimName}`);
     }
   }
 
   // Shuffle card
   const shIdx = getShufflerIndex();
   const shufflerName = gameState.players[shIdx] ? gameState.players[shIdx].name : '';
-  if (shufflerName) await speak(`${shufflerName} tolong kocok kartunya ya`);
+  if (shufflerName) await speak(`${shufflerName} punten kocok kartuna`);
 
    if (gameState._playMulaiDari0) {
     gameState._playMulaiDari0 = false;
