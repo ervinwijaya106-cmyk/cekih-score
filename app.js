@@ -548,6 +548,40 @@ if (playMinusOnce) {
     await playWav('audio/kok_minus_terus_sih_gamau_menang.wav');
    }
 }
+async function speakGameEvent(type, name = '') {
+
+    switch (type) {
+
+        case 'leader':
+            await speak(`${name}, ayeuna anjeun nu mingpin.`);
+            break;
+
+        case 'lead200':
+            await speak('Teruskeun, ulah nepi ka kasusul.');
+            break;
+
+        case 'close':
+            await speak('Bédana skor beuki deukeut.');
+            break;
+
+        case 'burnLeader':
+            await speak('Wah, pamimpin kaduruk!');
+            break;
+
+        case 'burn':
+            await speak('Persaingan beuki panas!');
+            break;
+
+        case 'minus100':
+            await speak('Ngopi heula ambeh teu lieur.');
+            break;
+
+        case 'stuck':
+            await speak('Can hudang kénéh sigana.');
+            break;
+    }
+
+}
 // ============================================================
 // BACKGROUND MUSIC
 // ============================================================
@@ -1589,7 +1623,7 @@ function startGame(names, target, isNewRound = false) {
   gameState.burnConfirmed = false;
   gameState.currentRoundFirstTurn = true;
   gameState.chartData = { turns: [], scores: [[],[],[],[]] };
-  gameState.aiComment = '('Kaulinan dimimitian';
+  gameState.aiComment = 'Kaulinan dimimitian';
 
   if (!isNewRound) {
     gameState.round = 1; 
@@ -1643,7 +1677,6 @@ function startGame(names, target, isNewRound = false) {
 
   setTimeout(() => speak('Kaulinan parantos dimimitian'), 500);
   }
-}
 // ============================================================
 // NEW ROUND
 // ============================================================
