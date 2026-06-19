@@ -548,10 +548,10 @@ function toggleMusic() {
 } else {
     bgMusic.pause();
     }
-    }
-  }
+  
   document.getElementById('btn-toggle-music').textContent = bgMusicOn ? '🎵' : '🔇';
-  saveState();
+
+     saveState();
 }
 
 // ============================================================
