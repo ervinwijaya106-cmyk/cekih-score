@@ -20,14 +20,13 @@ const LS_ARCHIVE_KEY = 'scoreCekih_archive_v7';
 const LS_MUSIC_KEY = 'scoreCekih_music_v7';
 
 const AI_COMMENTS = [
-  "Wah tipis banget selisihnya!",
-  "Kayaknya ada yang mau comeback nih",
-  "Hati-hati yang di bawah lagi ngintip!",
-  "Situasi makin panas!",
-  "Siapa yang bakal menang ya?",
-  "Jangan santai dulu, masih panjang!",
-  "Fokus fokus!",
-  "Wah berbahaya ini!"
+  "Wah, bédana leutik pisan!",
+  "Sigana aya anu hoyong uih deui",
+  "Sing ati-ati, anu di handap ieu ngintip!",
+  "Kaayaan beuki panas!",
+  "Saha anu bakal meunang?",
+  "tong santai hela,masih loba!",
+  "Fokus weh fokus!",
 ];
 
 // ============================================================
@@ -86,33 +85,74 @@ function playClick() {
   }
 }
 
-function numberToIndonesia(n) {
-  if (n === 0) return 'nol';
-  const isNeg = n < 0;
-  if (isNeg) n = -n;
-  const ones = ['','satu','dua','tiga','empat','lima','enam','tujuh','delapan','sembilan',
-    'sepuluh','sebelas','dua belas','tiga belas','empat belas','lima belas','enam belas',
-    'tujuh belas','delapan belas','sembilan belas'];
-  function helper(num) {
-    if (num < 20) return ones[num];
-    if (num < 100) {
-      const t = Math.floor(num/10);
-      const r = num % 10;
-      return (t === 1 ? 'sepuluh' : ones[t] + ' puluh') + (r ? ' ' + ones[r] : '');
+function numberToSunda(n) {
+    if (n === 0) return 'nol';
+
+    const isNeg = n < 0;
+    if (isNeg) n = -n;
+
+    const angka = [
+        '',
+        'hiji',
+        'dua',
+        'tilu',
+        'opat',
+        'lima',
+        'genep',
+        'tujuh',
+        'dalapan',
+        'salapan',
+        'sapuluh',
+        'sabelas',
+        'dua belas',
+        'tilu belas',
+        'opat belas',
+        'lima belas',
+        'genep belas',
+        'tujuh belas',
+        'dalapan belas',
+        'salapan belas'
+    ];
+
+    function helper(num) {
+        if (num < 20) return angka[num];
+
+        if (num < 100) {
+            const p = Math.floor(num / 10);
+            const s = num % 10;
+            return angka[p] + ' puluh' + (s ? ' ' + helper(s) : '');
+        }
+
+        if (num < 200) {
+            return 'saratus' + (num > 100 ? ' ' + helper(num - 100) : '');
+        }
+
+        if (num < 1000) {
+            const r = Math.floor(num / 100);
+            const s = num % 100;
+            return angka[r] + ' ratus' + (s ? ' ' + helper(s) : '');
+        }
+
+        if (num < 2000) {
+            return 'sarébu' + (num > 1000 ? ' ' + helper(num - 1000) : '');
+        }
+
+        if (num < 1000000) {
+            const r = Math.floor(num / 1000);
+            const s = num % 1000;
+            return helper(r) + ' rébu' + (s ? ' ' + helper(s) : '');
+        }
+
+        if (num < 1000000000) {
+            const r = Math.floor(num / 1000000);
+            const s = num % 1000000;
+            return helper(r) + ' juta' + (s ? ' ' + helper(s) : '');
+        }
+
+        return num.toString();
     }
-    if (num < 1000) {
-      const h = Math.floor(num/100);
-      const r = num % 100;
-      return (h === 1 ? 'seratus' : ones[h] + ' ratus') + (r ? ' ' + helper(r) : '');
-    }
-    if (num < 1000000) {
-      const th = Math.floor(num/1000);
-      const r = num % 1000;
-      return (th === 1 ? 'seribu' : helper(th) + ' ribu') + (r ? ' ' + helper(r) : '');
-    }
-    return num.toString();
-  }
-  return (isNeg ? 'minus ' : '') + helper(n);
+
+    return (isNeg ? 'minus ' : '') + helper(n);
 }
 
 function clamp(val, mn, mx) { return Math.max(mn, Math.min(mx, val)); }
@@ -484,10 +524,9 @@ async function runAudioSequence(burnActions) {
    }
    
   // Total score
-  for (let p of gameState.players) {
-    await speak(`${p.name} mendapatkan ${numberToIndonesia(p.score)} poin`);
-  }
-
+for (let p of gameState.players) {
+    await speak(`${p.name} meunang ${numberToSunda(p.score)} poin`);
+}
   // AI comment
   const comment = AI_COMMENTS[Math.floor(Math.random() * AI_COMMENTS.length)];
   gameState.aiComment = comment;
