@@ -21,12 +21,13 @@ const LS_MUSIC_KEY = 'scoreCekih_music_v7';
 
 const AI_COMMENTS = [
   "Wah, bédana leutik pisan!",
-  "Sigana aya anu hoyong uih deui",
-  "Sing ati-ati, anu di handap ieu ngintip!",
-  "Kaayaan beuki panas!",
-  "Saha anu bakal meunang?",
-  "tong santai hela,masih loba!",
-  "Fokus weh fokus!",
+"Wah, bédana saeutik pisan!",
+"Sigana aya nu rék nyusul.",
+"Sing ati-ati, nu di handap keur ngudag!",
+"Kaayaan beuki panas!",
+"Saha nu bakal meunang?",
+"Ulah santai heula, masih panjang!",
+"Sing fokus!"
 ];
 
 // ============================================================
@@ -1413,7 +1414,7 @@ async function handleWin(winner) {
     type: 'win',
     round: gameState.round,
     turn: gameState.turn,
-    text: `⭐ ${winner.name} mendapatkan bintang!`
+    text: `⭐ ${winner.name} meunang béntang`
   });
 
   // Cancel pending burns
@@ -1432,9 +1433,8 @@ async function handleWin(winner) {
   await playRewardVideo(winner.setupIdx);
 
   // TTS win
-  await speak(`Selamat ya ${winner.name} mendapatkan bintang satu`);
-  await speak('Ronde selesai, selamat berjuang dan fokus');
-
+  await speak(`Wilujeng ${winner.name} meunang béntang hiji`);
+  await speak('Ronde réngsé. Wilujeng neruskeun kaulinan, tetep fokus');
   // Go to new round
   goToNewRound();
 }
@@ -1589,10 +1589,10 @@ function startGame(names, target, isNewRound = false) {
   gameState.burnConfirmed = false;
   gameState.currentRoundFirstTurn = true;
   gameState.chartData = { turns: [], scores: [[],[],[],[]] };
-  gameState.aiComment = 'Permainan dimulai!';
+  gameState.aiComment = '('Kaulinan dimimitian';
 
   if (!isNewRound) {
-    gameState.round = 1;
+    gameState.round = 1; 
     gameState.history = [];
     gameState.undoStack = [];
     gameState.players = names.map((name, i) => ({
@@ -1641,9 +1641,9 @@ function startGame(names, target, isNewRound = false) {
   createPlayerCards();
   renderAll();
 
-  setTimeout(() => speak('Permainan dimulai'), 500);
+  setTimeout(() => speak('Kaulinan parantos dimimitian'), 500);
+  }
 }
-
 // ============================================================
 // NEW ROUND
 // ============================================================
